@@ -30,11 +30,11 @@ export default class ShellSessionHighlight implements PluginValue {
         if (!this.Prism)
             return Decoration.none;
 
-        const visibleText = view.visibleRanges.map(range => view.state.doc.sliceString(range.from, range.to)).join("\n");
+        const text = view.state.doc.toString();
         const regex = /```shell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
 
         let match;
-        while ((match = regex.exec(visibleText)) !== null) {
+        while ((match = regex.exec(text)) !== null) {
             const codeBlock = match[0];
             const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages['shell-session'], "shell-session");
 
@@ -62,7 +62,9 @@ export default class ShellSessionHighlight implements PluginValue {
                 const className = element.className;
 
                 const start = currentIndex;
-                element.childNodes.forEach(traverse);
+                element.childNodes.forEach((child) => {
+                    traverse(child);
+                });
 
                 const end = currentIndex;
 
@@ -70,9 +72,12 @@ export default class ShellSessionHighlight implements PluginValue {
             }
         };
 
-        tempEl.childNodes.forEach(traverse);
+        tempEl.childNodes.forEach((child) => {
+            traverse(child);
+        });
 
         ranges.sort((a, b) => a.start - b.start);
+
         for (const range of ranges) {
             builder.add(range.start, range.end, Decoration.mark({ class: range.className }));
         }
