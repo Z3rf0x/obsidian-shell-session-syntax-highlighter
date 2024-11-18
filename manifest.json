@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "shellsession-syntax-highlighter",
+	"name": "ShellSession Syntax Highlighter",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Syntax Highlighter for HTB Academy code blocks.",
+	"author": "Z3rf0x",
+	"authorUrl": "https://github.com/Z3rf0x",
 	"isDesktopOnly": false
 }

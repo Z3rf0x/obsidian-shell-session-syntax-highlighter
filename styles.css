@@ -1,8 +1,22 @@
-/*
+pre>code.language-shell-session {
+  font-family: monospace;
+  padding: 1em;
+  border-radius: 4px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.token.folder {
+  color: #9fef00;
+}
 
-If your plugin does not need CSS, delete this file.
+.token.command {
+  color: #a4b1cd;
+}
 
-*/
+.token.shell-symbol {
+  color: #ff8484;
+  font-weight: 700;
+}
+
+.token.output {
+  color: #a4b1cd;
+}
