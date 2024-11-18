@@ -1,5 +1,8 @@
-import { Plugin, loadPrism } from 'obsidian';
+import { Plugin } from 'obsidian';
 import './styles.css';
+import { ViewPlugin } from '@codemirror/view';
+import ShellSessionHighlight from 'ShellSessionHighlight';
+import loadPrismShellSession from 'loadPrismShellSession';
 
 export default class ShellSessionSyntaxHighlightPlugin extends Plugin {
 	Prism: any;
@@ -7,35 +10,23 @@ export default class ShellSessionSyntaxHighlightPlugin extends Plugin {
 	async onload() {
 		try {
 			console.log('Loading Shell-Session Syntax Highlighting Plugin');
-			this.Prism = await loadPrism();
-
-			this.Prism.languages['shell-session'] = {
-				'folder': {
-					pattern: /(\[.*\](?=\$))/m,
-					alias: 'folder',
-				},
-				'command': {
-					pattern: /([$#].*)/m,
-					inside: {
-						'shell-symbol': /[$#]/,
-						'language-bash': {
-							pattern: /\s(.*)/,
-							inside: this.Prism.languages['bash'],
-						}
-					},
-				},
-				'output': {
-					pattern: /(\n).*/m,
-					alias: 'output',
-				},
-			};
+			this.Prism = await loadPrismShellSession();
 
 			this.registerMarkdownPostProcessor((el, ctx) => {
 				el.querySelectorAll('pre > code.language-shell-session').forEach((block) => {
-					this.Prism.highlightElement(block); // Apply Prism highlighting
+					this.Prism.highlightElement(block);
 				})
 			})
 
+			this.registerEditorExtension(
+				ViewPlugin.fromClass(
+					ShellSessionHighlight, {
+					decorations: (plugin) => plugin.decorations,
+				}
+				)
+			);
+
+			this.app.workspace.updateOptions();
 		} catch (error) {
 			console.error('Failed to load Prism: ', error);
 		}
