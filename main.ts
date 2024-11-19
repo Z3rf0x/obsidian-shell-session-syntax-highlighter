@@ -16,6 +16,9 @@ export default class ShellSessionSyntaxHighlightPlugin extends Plugin {
 				el.querySelectorAll('pre > code.language-shell-session').forEach((block) => {
 					this.Prism.highlightElement(block);
 				})
+				el.querySelectorAll('pre > code.language-powershell-session').forEach((block) => {
+					this.Prism.highlightElement(block);
+				})
 			})
 
 			this.registerEditorExtension(
@@ -36,6 +39,7 @@ export default class ShellSessionSyntaxHighlightPlugin extends Plugin {
 		console.log('Unloading Shell-Session Syntax Highlighting Plugin');
 		if (this.Prism && this.Prism.languages['shell-session']) {
 			delete this.Prism.languages['shell-session'];
+			delete this.Prism.languages['powershell-session'];
 		}
 	}
 

@@ -31,12 +31,23 @@ export default class ShellSessionHighlight implements PluginValue {
             return Decoration.none;
 
         const text = view.state.doc.toString();
-        const regex = /```shell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
+        const shell_regex = /```shell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
 
         let match;
-        while ((match = regex.exec(text)) !== null) {
+        while ((match = shell_regex.exec(text)) !== null) {
             const codeBlock = match[0];
             const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages['shell-session'], "shell-session");
+
+            const blockStart = match.index;
+            this.highlight(highlighted, blockStart, builder)
+        }
+
+        const powershell_regex = /```powershell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
+
+
+        while ((match = powershell_regex.exec(text)) !== null) {
+            const codeBlock = match[0];
+            const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages['powershell-session'], "powershell-session");
 
             const blockStart = match.index;
             this.highlight(highlighted, blockStart, builder)

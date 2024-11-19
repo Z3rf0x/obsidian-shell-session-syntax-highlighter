@@ -1,12 +1,12 @@
 # Shell-Session Syntax Highlighting Plugin for Obsidian
 
-This plugin enables syntax highlighting for the `shell-session` language used by [HackTheBox](https://www.hackthebox.com/) on their learning platform, **HTB Academy**. The `shell-session` syntax makes it easier to distinguish between shell commands and their output, enhancing clarity and usability for technical notes involving terminal sessions.
+This plugin enables syntax highlighting for the `(power)shell-session` language used by [HackTheBox](https://www.hackthebox.com/) on their learning platform, **HTB Academy**. The `shell-session` syntax makes it easier to distinguish between shell commands and their output, enhancing clarity and usability for technical notes involving terminal sessions.
 
-With this plugin, you can bring the same `shell-session` formatting experience into [Obsidian](https://obsidian.md/), providing a seamless way to write and review shell command examples.
+With this plugin, you can bring the same `shell-session`/`powershell-session` formatting experience into [Obsidian](https://obsidian.md/), providing a seamless way to write and review shell command examples.
 
 ## Features
 
-- **Syntax Highlighting:** Highlights shell commands and output within markdown code blocks.
+- **Syntax Highlighting:** Highlights shell / powershell commands and output within markdown code blocks.
 - **Live Preview:** Works both in the Editor Mode and Reading Mode, providing real-time syntax highlighting as you edit or view notes.
 
 ## Installation
@@ -24,6 +24,14 @@ Hello, World!
 ```</pre>
 
 ![Example shell-session](example.png)
+
+And for the powershell-session syntax:
+<pre>```powershell-session 
+PS C:\htb> echo "Hello, World!" 
+Hello, World!
+```</pre>
+
+![Example powershell-session](example_ps.png)
 
 ## Configuration
 
