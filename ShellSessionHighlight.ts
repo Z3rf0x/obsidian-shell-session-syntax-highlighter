@@ -32,25 +32,32 @@ export default class ShellSessionHighlight implements PluginValue {
 
         const text = view.state.doc.toString();
         const shell_regex = /```shell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
+        const powershell_regex = /```powershell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
+
+        const matches: { blockStart: number; codeBlock: string; language: string }[] = [];
 
         let match;
         while ((match = shell_regex.exec(text)) !== null) {
-            const codeBlock = match[0];
-            const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages['shell-session'], "shell-session");
-
-            const blockStart = match.index;
-            this.highlight(highlighted, blockStart, builder)
+            matches.push({
+                blockStart: match.index,
+                codeBlock: match[0],
+                language: "shell-session",
+            });
         }
 
-        const powershell_regex = /```powershell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
-
-
         while ((match = powershell_regex.exec(text)) !== null) {
-            const codeBlock = match[0];
-            const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages['powershell-session'], "powershell-session");
+            matches.push({
+                blockStart: match.index,
+                codeBlock: match[0],
+                language: "powershell-session",
+            });
+        }
 
-            const blockStart = match.index;
-            this.highlight(highlighted, blockStart, builder)
+        matches.sort((a, b) => a.blockStart - b.blockStart);
+
+        for (const { blockStart, codeBlock, language } of matches) {
+            const highlighted = this.Prism.highlight(codeBlock, this.Prism.languages[language], language);
+            this.highlight(highlighted, blockStart, builder);
         }
 
         return builder.finish();
@@ -86,8 +93,9 @@ export default class ShellSessionHighlight implements PluginValue {
         tempEl.childNodes.forEach((child) => {
             traverse(child);
         });
-
+        console.log(ranges)
         ranges.sort((a, b) => a.start - b.start);
+        console.log(ranges)
 
         for (const range of ranges) {
             builder.add(range.start, range.end, Decoration.mark({ class: range.className }));
