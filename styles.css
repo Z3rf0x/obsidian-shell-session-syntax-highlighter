@@ -4,11 +4,11 @@ pre>code.language-shell-session {
   border-radius: 4px;
 }
 
-.token.folder {
+.token.success {
   color: #9fef00;
 }
 
-.token.command {
+.token.text {
   color: #a4b1cd;
 }
 
@@ -17,6 +17,14 @@ pre>code.language-shell-session {
   font-weight: 700;
 }
 
-.token.output {
-  color: #a4b1cd;
+.token.high {
+  color: #FF5D5D;
+}
+
+.token.jobs {
+  color: #B57C00
+}
+
+.token.agents {
+  color: #00D49C
 }

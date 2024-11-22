@@ -33,6 +33,7 @@ export default class ShellSessionHighlight implements PluginValue {
         const text = view.state.doc.toString();
         const shell_regex = /```shell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
         const powershell_regex = /```powershell-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
+        const msf_regex = /```msf-session(?:[\s:!?.;,@%&(){}[\]<>*~]*)([\s\S]*?)```/gi
 
         const matches: { blockStart: number; codeBlock: string; language: string }[] = [];
 
@@ -50,6 +51,14 @@ export default class ShellSessionHighlight implements PluginValue {
                 blockStart: match.index,
                 codeBlock: match[0],
                 language: "powershell-session",
+            });
+        }
+
+        while ((match = msf_regex.exec(text)) !== null) {
+            matches.push({
+                blockStart: match.index,
+                codeBlock: match[0],
+                language: "msf-session",
             });
         }
 

@@ -4,7 +4,7 @@ import { loadPrism } from "obsidian"
 const SHELL_SESSION_GRAMMAR = {
     'folder': {
         pattern: /(\[.*\](?=\$))/m,
-        alias: 'folder',
+        alias: 'success',
     },
     'command': {
         pattern: /([$#].*)/m,
@@ -15,10 +15,11 @@ const SHELL_SESSION_GRAMMAR = {
                 inside: null,
             }
         },
+        alias: "text"
     },
     'output': {
         pattern: /(\n).*/m,
-        alias: 'output',
+        alias: 'text'
     },
 };
 
@@ -32,10 +33,38 @@ const POWERSHELL_SESSION_GRAMMAR = {
                 inside: null,
             }
         },
+        alias: "text"
     },
     'output': {
         pattern: /(\n).*/m,
-        alias: 'output',
+        alias: 'text',
+    },
+}
+
+const MSF_SESSION_GRAMMAR = {
+    'msf':{
+        pattern: /(\b(?:msf6|msf)(?=\s|\]))/m,
+        alias: 'success'
+    },
+    'jobs&agents':{
+        pattern: /(?<=\]\()[^)]*/m,
+        inside: {
+            'jobs': /Jobs/,
+            'agents': /Agents/,
+        }
+    },
+    'module': {
+        pattern: /exploit\(([^]+)\)/m,
+        inside: {
+            'path': {
+                pattern: /(?<=\().*(?=\))/,
+                alias: 'high'
+            }
+        }
+    },
+    'output': {
+        pattern: /(\n).*/m,
+        alias: 'text',
     },
 }
 
@@ -46,6 +75,7 @@ const loadPrismShellSession = async () => {
         Prism.languages['shell-session'] = SHELL_SESSION_GRAMMAR;
         POWERSHELL_SESSION_GRAMMAR.command.inside['language-powershell'].inside = Prism.languages['powershell'];
         Prism.languages['powershell-session'] = POWERSHELL_SESSION_GRAMMAR;
+        Prism.languages['msf-session'] = MSF_SESSION_GRAMMAR;
         return Prism;
     } catch (error) {
         console.error("Failed to load Prism:", error);
