@@ -1,7 +1,7 @@
 {
 	"id": "shellsession-syntax-highlighter",
 	"name": "ShellSession Syntax Highlighter",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Syntax Highlighter for HTB Academy code blocks.",
 	"author": "Z3rf0x",

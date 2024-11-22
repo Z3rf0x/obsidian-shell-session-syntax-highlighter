@@ -1,37 +1,47 @@
 # Shell-Session Syntax Highlighting Plugin for Obsidian
 
-This plugin enables syntax highlighting for the `(power)shell-session` language used by [HackTheBox](https://www.hackthebox.com/) on their learning platform, **HTB Academy**. The `shell-session` syntax makes it easier to distinguish between shell commands and their output, enhancing clarity and usability for technical notes involving terminal sessions.
+This plugin enables syntax highlighting for various session-based languages used in **cybersecurity** platforms. It provides enhanced readability by distinguishing between commands and their outputs, making it easier to document and review terminal sessions.
 
-With this plugin, you can bring the same `shell-session`/`powershell-session` formatting experience into [Obsidian](https://obsidian.md/), providing a seamless way to write and review shell command examples.
+With this plugin, you can seamlessly bring syntax highlighting for session-based command examples into [Obsidian](https://obsidian.md/), supporting formats like shell-session, powershell-session, msf-session, and more, to improve the clarity of technical notes.
 
 ## Features
 
-- **Syntax Highlighting:** Highlights shell / powershell commands and output within markdown code blocks.
-- **Live Preview:** Works both in the Editor Mode and Reading Mode, providing real-time syntax highlighting as you edit or view notes.
+-   **Syntax Highlighting:** Highlights shell / powershell commands and output within markdown code blocks.
+-   **Live Preview:** Works both in the Editor Mode and Reading Mode, providing real-time syntax highlighting as you edit or view notes.
 
 ## Installation
 
 1. Download and Install the plugin from the [Release](https://github.com/Z3rf0x/obsidian-shell-session-syntax-highlighter/releases) page.
-2. Extract the plugin into your `.obsidian/plugins/` directory. 
+2. Extract the plugin into your `.obsidian/plugins/` directory.
 3. Enable the plugin by navigating to **Community Plugins** page.
 
 ## Usage
 
 To use the shell-session syntax, wrap your shell commands in code blocks like so:
+
 <pre>```shell-session 
 user@machine[/htb]$ echo "Hello, World!" 
 Hello, World!
 ```</pre>
 
-![Example shell-session](example.png)
+![Example shell-session](assets/shell.png)
 
-And for the powershell-session syntax:
+For the powershell-session syntax:
+
 <pre>```powershell-session 
 PS C:\htb> echo "Hello, World!" 
 Hello, World!
 ```</pre>
 
-![Example powershell-session](example_ps.png)
+![Example powershell-session](assets/powershell.png)
+
+For the msf-session syntax:
+
+<pre>```msf-session 
+msf6 exploit(windows/smb/ms17_010_psexec) > show options
+```</pre>
+
+![Example powershell-session](assets/msf.png)
 
 ## Configuration
 

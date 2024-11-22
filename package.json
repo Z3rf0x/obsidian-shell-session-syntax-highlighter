@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-shellsession-syntax-highlighter",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "This plugin adds shell-session syntax highlighter to Obsidian. (https://obsidian.md)",
 	"main": "main.js",
 	"scripts": {
