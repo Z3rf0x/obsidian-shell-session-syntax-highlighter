@@ -1,8 +1,8 @@
 import { Plugin } from 'obsidian';
-import './styles.css';
+import 'styles.css';
 import { ViewPlugin } from '@codemirror/view';
-import ShellSessionHighlight from 'ShellSessionHighlight';
-import loadPrismShellSession from 'loadPrismShellSession';
+import ShellSessionHighlight from 'src/ShellSessionHighlight';
+import loadPrismShellSession from 'src/loadPrismShellSession';
 
 export default class ShellSessionSyntaxHighlightPlugin extends Plugin {
 	Prism: any;

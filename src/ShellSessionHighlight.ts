@@ -1,6 +1,6 @@
 import { RangeSetBuilder } from "@codemirror/state";
 import { Decoration, DecorationSet, EditorView, PluginValue, ViewUpdate } from "@codemirror/view";
-import loadPrismShellSession from "loadPrismShellSession";
+import loadPrismShellSession from "src/loadPrismShellSession";
 
 export default class ShellSessionHighlight implements PluginValue {
     decorations: DecorationSet;
@@ -102,9 +102,7 @@ export default class ShellSessionHighlight implements PluginValue {
         tempEl.childNodes.forEach((child) => {
             traverse(child);
         });
-        console.log(ranges)
         ranges.sort((a, b) => a.start - b.start);
-        console.log(ranges)
 
         for (const range of ranges) {
             builder.add(range.start, range.end, Decoration.mark({ class: range.className }));

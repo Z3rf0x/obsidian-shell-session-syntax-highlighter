@@ -56,9 +56,8 @@ const MSF_SESSION_GRAMMAR = {
     'module': {
         pattern: /exploit\(([^]+)\)/m,
         inside: {
-            'path': {
+            'high': {
                 pattern: /(?<=\().*(?=\))/,
-                alias: 'high'
             }
         }
     },
