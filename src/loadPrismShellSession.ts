@@ -92,6 +92,7 @@ const loadPrismShellSession = async () => {
 			"language-powershell"
 		].inside = Prism.languages["powershell"];
 		Prism.languages["powershell-session"] = POWERSHELL_SESSION_GRAMMAR;
+		Prism.languages["cmd-session"] = POWERSHELL_SESSION_GRAMMAR;
 		Prism.languages["msf-session"] = MSF_SESSION_GRAMMAR;
 		return Prism;
 	} catch (error) {
