@@ -1,14 +1,14 @@
-pre>code.language-shell-session {
+pre>code {
   font-family: monospace;
   padding: 1em;
   border-radius: 4px;
 }
 
-.token.success {
-  color: #9fef00;
+.token.text {
+  color: #CCCCCC;
 }
 
-.token.text {
+.token.special {
   color: #a4b1cd;
 }
 
@@ -27,4 +27,16 @@ pre>code.language-shell-session {
 
 .token.agents {
   color: #00D49C
+}
+
+.token.info {
+  color: #2C9BFF;
+}
+
+.token.warning {
+  color: #FFAF00;
+}
+
+.token.success {
+  color: #9fef00;
 }
